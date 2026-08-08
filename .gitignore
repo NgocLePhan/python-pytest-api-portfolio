@@ -1,0 +1,16 @@
+# Python virtual environments
+.venv/
+venv/
+ENV/
+
+# Environment variables (Private Keys / Secrets)
+.env
+
+# Pytest cache & reports
+.pytest_cache/
+report*.html
+*.log
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
