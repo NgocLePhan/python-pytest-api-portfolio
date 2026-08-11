@@ -18,3 +18,19 @@ def api_headers():
         "x-api-key": private_key,
         "Conten-Type": "application/json"
     }
+
+@pytest.fixture
+def auth_token(base_url, api_headers):
+    """Fixture return Auth Token"""
+    url = f"{base_url}/api/login"
+    payload = {
+        "email": "eve.holt@reqres.in",
+        "password": "cityslicka"
+    }
+
+    response = requests.post(url, headers=api_headers, json=payload)
+    token = response.json().get("token")
+
+    print(f"\n Get token success: {token}")
+    return token
+    
