@@ -24,6 +24,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Create .env file for CI
+        run: |
+          echo "BASE_URL=https://reqres.in" >> .env
+          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
+
       - name: Run Pytest & Generate HTML Report
         env:
           API_KEY: ${{ secrets.API_KEY }}
