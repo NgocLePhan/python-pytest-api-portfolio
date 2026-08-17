@@ -33,4 +33,22 @@ def auth_token(base_url, api_headers):
 
     print(f"\n Get token success: {token}")
     return token
-    
+
+@pytest.fixture 
+def dummy_base_url():
+    """Base Url for Dummy project"""
+    return os.getenv("DUMMY_BASE_URL","https://dummyjson.com")  
+
+@pytest.fixture 
+def dummy_auth_token(dummy_base_url):
+    url_dummy = f"{dummy_base_url}/auth/login"
+    payload_dummy = {
+        "username": "emilys",
+        "password": "emilyspass",
+        "expiresInMins": 30
+    }  
+
+    response_dummy = requests.post(url_dummy, json=payload_dummy)
+    token_dummy = response_dummy.json()["accessToken"]
+    print(f"\n Get token success: {token_dummy}")
+    return token_dummy
